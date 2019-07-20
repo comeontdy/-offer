@@ -1,0 +1,25 @@
+题目描述
+用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。
+
+思想：A作为进栈，B作为出栈，来数则进A，出数判断，B不为空，直接pop，B为空，判断A，A为空，则是空栈，否则把A所有的数都进B，在出B.pop
+
+# -*- coding:utf-8 -*-
+class Solution:
+    def __init__(self):
+        self.A = []
+        self.B = []
+        
+    def push(self, node):
+        # write code here
+        self.A .append(node)
+        
+    def pop(self):
+        # return xx
+        if self.B:
+            return self.B.pop()
+        elif not self.A:
+            return None
+        else:
+            while self.A:
+                self.B.append(self.A.pop())
+            return self.B.pop()
