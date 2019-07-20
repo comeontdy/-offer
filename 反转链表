@@ -1,0 +1,27 @@
+题目描述
+输入一个链表，反转链表后，输出新链表的表头。
+
+思想：遍历链表，把每一个遍历到的都放在最前面
+
+# -*- coding:utf-8 -*-
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution:
+    # 返回ListNode
+    def ReverseList(self, pHead):
+        # write code here
+        if pHead == None:
+            return None
+        
+        res = None
+        nex = None
+        
+        while pHead != None:
+            nex = pHead.next
+            pHead.next = res
+            res = pHead
+            pHead = nex
+            
+        return res
