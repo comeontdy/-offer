@@ -1,0 +1,57 @@
+题目描述
+大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。
+n<=39
+
+思路：直接用递归不行，递归重复计算量太多
+#直接用循环
+#改进递归
+#dp
+
+
+# -*- coding:utf-8 -*-
+class Solution:
+    def Fibonacci(self, n):
+        # write code here
+        if n == 0:
+            return 0
+        if n == 1 or n==2:
+            return 1
+        else:
+            i = 2
+            a = 0
+            b = 1
+            while i <= n:
+                a,b = b,a+b
+                i += 1
+            return b
+
+
+# -*- coding:utf-8 -*-
+class Solution:
+    def Fibonacci(self, n):
+        # write code here
+        if n == 0:
+            return 0
+        if n == 1 or n==2:
+            return 1
+        elif n==3:
+            return 2
+        else:
+            return 3*self.Fibonacci(n-3) + 2*self.Fibonacci(n-4)
+            
+            
+
+# -*- coding:utf-8 -*-
+class Solution:
+    def Fibonacci(self, n):
+        # write code here
+        if n == 0:
+            return 0
+        
+        a = 0
+        b = 1
+        while n > 0:
+            b += a 
+            a = b - a
+            n -= 1
+        return a
