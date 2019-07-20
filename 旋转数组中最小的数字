@@ -1,0 +1,28 @@
+题目描述
+把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 
+输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素。 
+例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。 NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。
+
+思想：当然可以直接返回min（），但是这题考的是二分思想
+
+#如果中间值大于最右边的值，则最小值一定在mid + 1 —— r中，
+#如果中间值小于最右边的值，则最小值一定0 —— mid之间
+#但是这个题和二分法有点区别，这个是严格递增，可以有重复，则增加一个判断：elif rotateArray[mid] == rotateArray[r]:
+# -*- coding:utf-8 -*-
+class Solution:
+    def minNumberInRotateArray(self, rotateArray):
+        # write code here
+        if len(rotateArray) == 0:
+            return 0
+        l = 0
+        r = len(rotateArray)-1
+        mid = 0
+        while r > l:
+            mid = l + (r-l)/2
+            if rotateArray[mid] > rotateArray[r]:
+                l = mid + 1
+            elif rotateArray[mid] == rotateArray[r]:
+                r = r - 1
+            else:
+                r = mid
+        return rotateArray[l]
