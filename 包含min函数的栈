@@ -1,0 +1,30 @@
+题目描述
+定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数（时间复杂度应为O（1））。
+
+思想：两个列表模拟栈
+
+# -*- coding:utf-8 -*-
+class Solution:
+    A = []
+    B = []
+    def push(self, node):
+        self.A.append(node)
+        if not self.B:
+            self.B.append(node)
+        elif node < self.B[-1]:
+            self.B.append(node)
+        else:
+            self.B.append(self.B[-1])
+        # write code here
+    def pop(self):
+        if self.A:
+            self.A.pop()
+            self.B.pop()
+        # write code here
+    def top(self):
+        self.B.pop()
+        return self.A.pop()
+        # write code here
+    def min(self):
+        return self.B[-1]
+        # write code here
