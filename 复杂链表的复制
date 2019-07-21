@@ -1,0 +1,52 @@
+题目描述
+输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点），返回结果为复制后复杂链表的head。（注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空）
+
+思想：三步法
+ 1. 把复制的结点链接在原始链表的每一对应结点后面 
+ 2. 把复制的结点的random指针指向被复制结点的random指针的下一个结点
+ 3. 拆分成两个链表，奇数位置为原链表，偶数位置为复制链表，注意复制链表的最后一个结点的next指针不能跟原链表指向同一个空结点None，
+    next指针要重新赋值None(判定程序会认定你没有完成复制）
+    
+    
+ # -*- coding:utf-8 -*-
+# class RandomListNode:
+#     def __init__(self, x):
+#         self.label = x
+#         self.next = None
+#         self.random = None
+class Solution:
+    # 返回 RandomListNode
+    def Clone(self, pHead):
+        # write code here
+        if not pHead:
+            return None
+        a = pHead
+        while a:
+            tmp = a.next
+            new_head = RandomListNode(a.label)
+            new_head.next = tmp
+            a.next = new_head
+            a = tmp
+            
+        a = pHead
+        
+        while  a:
+            tmp = a.random
+            b = a.next
+            if tmp:
+                b.random = tmp.next
+            a = b.next
+            
+        a = pHead
+        res = pHead.next
+        while a:
+            tmp = a.next
+            tmp1 =tmp.next
+            a.next = tmp1
+            if tmp1:
+                tmp.next = tmp1.next
+            else:
+                tmp.next = None
+            a = tmp1
+        return res
+     
