@@ -1,0 +1,47 @@
+题目描述
+输入两个链表，找出它们的第一个公共结点。
+
+思想：双指针
+如果两个链表有公共节点，则一定有想通的的尾串
+让长的那个先走，然后一起走，如果相等，则是第一个公共节点
+
+# -*- coding:utf-8 -*-
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution:
+    def FindFirstCommonNode(self, pHead1, pHead2):
+        # write code here
+        if not pHead1 or not pHead2:
+            return None
+        length1,length2 = 0,0
+        p1 , p2 = pHead1,pHead2
+        while p1:
+            length1 += 1
+            p1 = p1.next
+        while p2:
+            length2 += 1
+            p2 = p2.next
+        if length1 >= length2:
+            p1 = pHead1
+            count = 0
+            while count < length1-length2:
+                count += 1
+                p1 = p1.next
+            p2 = pHead2
+            while p1 != p2:
+                p1 = p1.next
+                p2 = p2.next
+            return p1
+        else:
+            p2 = pHead2
+            count = 0
+            while count < length2-length1:
+                count += 1
+                p2 = p2.next
+            p1 = pHead1
+            while p1 != p2:
+                p1 = p1.next
+                p2 = p2.next
+            return p1
