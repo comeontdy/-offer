@@ -1,0 +1,17 @@
+题目描述
+求1+2+3+...+n，要求不能使用乘除法、for、while、if、else、switch、case等关键字及条件判断语句（A?B:C）。
+
+思想：短路求值
+python and 如果前面为假则返回前面，否则返回后面。
+
+# -*- coding:utf-8 -*-
+class Solution:
+    def Sum_Solution(self, n):
+        # write code here
+        '''
+        return sum(range(1,n+1))
+        '''
+        res = n
+        a = res and self.Sum_Solution(n-1)
+        res = res + a
+        return res
