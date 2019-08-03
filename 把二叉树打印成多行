@@ -1,0 +1,28 @@
+题目描述
+从上到下按层打印二叉树，同一层结点从左至右输出。每一层输出一行。
+
+思路：递归打印，宽度优先
+
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    # 返回二维列表[[1,2],[4,5]]
+    def Print(self, pRoot):
+        # write code here
+        res = []
+        self.layer(pRoot,1,res)
+        return res
+    
+    def layer(self,root,depth,res):
+        if not root:
+            return res
+        if len(res) < depth:
+            res.append([])
+        res[depth-1].append(root.val)
+        self.layer(root.left,depth + 1,res)
+        self.layer(root.right,depth + 1,res)
+        
