@@ -1,0 +1,63 @@
+题目描述
+请实现一个函数按照之字形打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右至左的顺序打印，第三行按照从左到右的顺序打印，其他行以此类推。
+
+
+思路：1.递归 2.二个栈，宽度优先
+
+# -*- coding:utf-8 -*-
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+class Solution:
+    def Print(self,pRoot):
+        res = []
+        if not pRoot:
+            return res
+        depth = 1
+        a = [pRoot]
+        b = []
+        while a or b:
+            if depth % 2 == 1:
+                tmp = []
+                while a:
+                    t = a.pop()
+                    if t :
+                        tmp.append(t.val)
+                        b.append(t.left)
+                        b.append(t.right)
+                if tmp:
+                    res.append(tmp)
+                    depth += 1
+            else:
+                tmp = []
+                while b:
+                    t = b.pop()
+                    if t :
+                        tmp.append(t.val)
+                        a.append(t.right)
+                        a.append(t.left)
+                if tmp:
+                    res.append(tmp)
+                    depth += 1
+        return res
+    '''
+    def Print(self, pRoot):
+        # write code here
+        res = []
+        self.layer(pRoot,1,res)
+        for i in range(len(res)):
+            if i % 2 == 1:
+                res[i].reverse()
+        return res
+    
+    def layer(self,root,depth,res):
+        if not root :
+            return res
+        if len(res) < depth:
+            res.append([])
+        res[depth-1].append(root.val)
+        self.layer(root.left,depth + 1,res)
+        self.layer(root.right,depth + 1,res)
+    '''
